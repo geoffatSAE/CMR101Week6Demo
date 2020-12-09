@@ -7,7 +7,20 @@ public class ButtonRed : MonoBehaviour
 
     public enum DropCube {  still, spinning };
     public DropCube dropCube;
-    
+
+    private void OnEnable()
+    {
+        MyEventManager.OnSpin += StartSpinning;
+        MyEventManager.OnStill += StopSpinning;
+    }
+
+    private void OnDisable()
+    {
+        MyEventManager.OnSpin -= StartSpinning;
+        MyEventManager.OnStill -= StopSpinning;
+
+    }
+
 
     Renderer r;
     // Start is called before the first frame update
